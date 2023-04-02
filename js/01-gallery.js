@@ -24,9 +24,9 @@ function createGalleryMarkup(images) {
 // Додаю розмітку в DOM
 const galleryMarkup = createGalleryMarkup(galleryItems);
 galleryConteiner.insertAdjacentHTML("afterbegin", galleryMarkup);
-
 // Додаю слухача, який буде слухати клік
 galleryConteiner.addEventListener('click', onImgClick);
+
 
 function onImgClick(evt) {
   // Прибираю нативну поведінку під час кліку по елементу
