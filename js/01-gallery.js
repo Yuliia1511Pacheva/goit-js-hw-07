@@ -51,18 +51,27 @@ function onImgClick(evt) {
            height="auto"
          />
    
-`)
+`, {
+	
+	onShow: (instance) => {document.addEventListener('keydown', onClose)},
+
+	onClose: (instance) => {document.removeEventListener('keydown', onClose)}
+})
   instance.show()
 
-// Додаю умову за якої, якщо модальне вікно видиме, то на нього вішаємо прослуховувач подій і в такому випадку при кліці на ESC - закриваємо його
-  if (basicLightbox.visible) {
-    window.addEventListener('keydown', (evt) => {
-      if (evt.code !== "Escape")
-        return;
-      instance.close()
-    })
-  }
+  function onClose(evt) {
+    if (evt.code !== "Escape") {
+      return;
+    }
+    instance.close()
+} 
 }
+
+
+
+
+
+
 
 // СПРОБУВАЛА ВИКОРИСТАТИ Ф-ЦІЮ IIFE для створення розмітки
 
@@ -86,6 +95,16 @@ function onImgClick(evt) {
 
 // }())
 
+
+// У ЦЬОМУ ВИПАДКУ НЕ БУЛО ВИДАЛЕННЯ ПРОСЛУХАЧА ПОДІЙ, ПОФІКСИЛА ЗА ДОПОМОГОЮ ОБЄ'КТА З МЕТОДАМИ
+// Додаю умову за якої, якщо модальне вікно видиме, то на нього вішаємо прослуховувач подій і в такому випадку при кліці на ESC - закриваємо його
+  // if (basicLightbox.visible) {
+  //   window.addEventListener('keydown', (evt) => {
+  //     if (evt.code !== "Escape")
+  //       return;
+  //     instance.close()
+  //   })
+  // }
 
 
 
